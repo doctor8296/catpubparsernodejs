@@ -1,0 +1,36 @@
+{
+  "formData": [
+    [
+        "__RequestVerificationToken",
+        "bfAa-IEpFPyJl6uOCaiYFhQtPbYv5qa8H0pP5Qiuli4O3i6zVWgd76OaEUkzmK1slXJUSTaxFfb8YbNP46DsAdrvwNYaX544DtlbamgjbpY1"
+    ],
+    [
+        "Category",
+        ""
+    ],
+    [
+        "SearchPubType",
+        ""
+    ],
+    [
+        "SearchSort",
+        "Relevance"
+    ],
+    [
+        "PageNumber",
+        "0"
+    ],
+    [
+        "FormNav",
+        "False"
+    ],
+    [
+        "SearchTerm",
+        ""
+    ],
+    [
+        "Languages",
+        "DUT"
+    ]
+]
+}
