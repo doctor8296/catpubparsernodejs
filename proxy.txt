@@ -1,2 +1,2 @@
-apimatelefon:44S8hUK3yR@185.13.225.134:50100
-apimatelefon:44S8hUK3yR@45.10.156.112:50100
+http://apimatelefon:44S8hUK3yR@185.13.225.134:50100
+http://apimatelefon:44S8hUK3yR@45.10.156.112:50100

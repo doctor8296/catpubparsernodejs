@@ -129,5 +129,6 @@ parser.on('data', async cardsData => {
 if (ended) {
   storage.set({'ended': false});
 }
+console.log('ENDED:', ended, 'STARTPAGE:', currentPage)
 parser.run(formData, currentPage, cookie, ended, RETRY_COUNT, TIMEOUT, proxy);
 

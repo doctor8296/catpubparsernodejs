@@ -4,8 +4,7 @@
   "description": "Node.js parser for catpublications.com",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
-    "build": "ncc index.js && pkg . --output catpubparse.exe --exclude \"data.json\" --exclude \"proxy.txt\" --exclude \".env\""
+    "start": "node index.js"
   },
   "pkg": {
     "scripts": [
@@ -30,14 +29,10 @@
   },
   "homepage": "https://github.com/doctor8296/catpubparsernodejs#readme",
   "dependencies": {
-    "axios": "^0.27.2",
-    "axios-debug-log": "^1.0.0",
+    "axios": "^1.6.3",
     "dotenv": "^16.3.1",
     "exceljs": "^4.4.0",
-    "form-data": "^4.0.0",
-    "htmlparser2": "^9.0.0",
-    "ncc": "^0.3.6",
-    "node-html-parser": "^6.1.12",
-    "parse5": "^7.1.2"
+    "https-proxy-agent": "^7.0.2",
+    "node-html-parser": "^6.1.12"
   }
 }
