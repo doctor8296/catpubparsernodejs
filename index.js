@@ -2,9 +2,9 @@ console.log('catpubparser node.js made by doctor8296');
 
 const fs = require('fs');
 const ExcelJS = require('exceljs');
-const Storage = require('./Storage.js');
+const Storage = require('./lib/Storage.js');
 const Parser = require('./Parser.js');
-const writePDF = require('./FileWriter.js');
+const writePDF = require('./lib/FileWriter.js');
 const generateFileName = require('./generateFileName.js');
 const ProxyList = require('./ProxyList.js');
 
