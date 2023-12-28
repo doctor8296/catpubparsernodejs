@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [6.1.12](https://github.com/taoqf/node-fast-html-parser/compare/v6.1.11...v6.1.12) (2023-12-25)
+
+
+### Bug Fixes
+
+* [#258](https://github.com/taoqf/node-fast-html-parser/issues/258) ([5a6a614](https://github.com/taoqf/node-fast-html-parser/commit/5a6a61489a62264221dde5e8f76a5d35b18d17bd))
+* nullable return types of HTMLElement ([fe83c3e](https://github.com/taoqf/node-fast-html-parser/commit/fe83c3ee405b2fd973a9d46e4b2ff40f68a5471f))
+
 ### [6.1.11](https://github.com/taoqf/node-fast-html-parser/compare/v6.1.10...v6.1.11) (2023-10-25)
 
 

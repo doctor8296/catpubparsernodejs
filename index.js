@@ -3,15 +3,15 @@ console.log('catpubparser node.js made by doctor8296');
 const fs = require('fs');
 const ExcelJS = require('exceljs');
 const Storage = require('./lib/Storage.js');
-const Parser = require('./Parser.js');
+const Parser = require('./lib/Parser.js');
 const writePDF = require('./lib/FileWriter.js');
-const generateFileName = require('./generateFileName.js');
-const ProxyList = require('./ProxyList.js');
+const generateFileName = require('./lib/generateFileName.js');
+const ProxyList = require('./lib/ProxyList.js');
 
 require('dotenv').config();
 
-const RETRY_COUNT = process.env.RETRY_COUNT || 8;
-const TIMEOUT = process.env.TIMEOUT || 0;
+const RETRY_COUNT = Number(process.env.RETRY_COUNT || 8);
+const TIMEOUT = Number(process.env.TIMEOUT || 0);
 const USE_PROXY = process.env.USE_PROXY || 0;
 const OUTPUT_PATH = process.env.OUTPUT_PATH || './output';
 
