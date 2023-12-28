@@ -1,17 +1,19 @@
 console.log('catpubparser node.js made by doctor8296');
 
 const fs = require('fs');
+const ExcelJS = require('exceljs');
 const Storage = require('./Storage.js');
 const Parser = require('./Parser.js');
-const ExcelJS = require('exceljs');
 const writePDF = require('./FileWriter.js');
 const generateFileName = require('./generateFileName.js');
 const ProxyList = require('./ProxyList.js');
 
-const RETRY_COUNT = 8;
-const TIMEOUT = 0;
-const USE_PROXY = true;
-const OUTPUT_PATH = './output';
+require('dotenv').config();
+
+const RETRY_COUNT = process.env.RETRY_COUNT || 8;
+const TIMEOUT = process.env.TIMEOUT || 0;
+const USE_PROXY = process.env.USE_PROXY || 0;
+const OUTPUT_PATH = process.env.OUTPUT_PATH || './output';
 
 if (!fs.existsSync(OUTPUT_PATH)) {
   fs.mkdirSync(OUTPUT_PATH);
