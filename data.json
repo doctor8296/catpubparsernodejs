@@ -1,36 +1,52 @@
 {
   "formData": [
     [
-        "__RequestVerificationToken",
-        "bfAa-IEpFPyJl6uOCaiYFhQtPbYv5qa8H0pP5Qiuli4O3i6zVWgd76OaEUkzmK1slXJUSTaxFfb8YbNP46DsAdrvwNYaX544DtlbamgjbpY1"
+      "__RequestVerificationToken",
+      "rtAybne11du8txbDA7Ev5ZD1Lr_J0wUrdArTwgKO10kiy7KCVk7aAlv-Gn_QyiWG40TfM2xbyBkqaxynxoUss_PeFrXI-HZ4OUn_du-qvyA1"
     ],
     [
-        "Category",
-        ""
+      "Category",
+      ""
     ],
     [
-        "SearchPubType",
-        ""
+      "SearchPubType",
+      ""
     ],
     [
-        "SearchSort",
-        "Relevance"
+      "SearchSort",
+      "Relevance"
     ],
     [
-        "PageNumber",
-        "0"
+      "PageNumber",
+      "0"
     ],
     [
-        "FormNav",
-        "False"
+      "FormNav",
+      "False"
     ],
     [
-        "SearchTerm",
-        ""
+      "SearchTerm",
+      ""
     ],
     [
-        "Languages",
-        "DUT"
+      "Languages",
+      "ENG"
+    ],
+    [
+      "Categories.Index",
+      "Equipment"
+    ],
+    [
+      "Categories[Equipment].Name",
+      "Equipment"
+    ],
+    [
+      "Categories[Equipment].ProductFamilies",
+      "Backhoe Loaders"
     ]
-]
+  ],
+  "currentPage": 1,
+  "ended": false,
+  "fileName": "2023-12-28_15-24-00_catpub.xlsx",
+  "cookie": " __RequestVerificationToken=rTXnak9WhSwChW-ccyNJWRl-QE86wJ5tnZcOUY8WERCbJGn9rZw_Xo8MK9OVxK-_9nBlBWiB1V0BXoBPiAWqqivbizXA1i2vYZWf8DDGe7A1; CartToken=dff8b727-d309-4fb6-8be0-50d1bd22064b;"
 }

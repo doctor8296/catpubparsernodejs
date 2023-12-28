@@ -10,18 +10,17 @@ class Parser extends Eventor {
     super();
   }
 
-  async run(formData, startPage, ended, maxRetryCount, timeout=0, useProxy=false) {
+  async run(formData, startPage, cookie='', ended=false, maxRetryCount=0, timeout=0, proxy=null) {
     let currentPage = ended ? 0 : (startPage || 0);
     let totalPages = currentPage + 1;
     let currentRetries = 0;
-    let cookie = '';
     while (currentPage < totalPages) {
       const result = await this.getData(
         formData,
         cookie,
         currentPage,
         timeout,
-        useProxy ? ProxyList.format((new ProxyList()).getRandom()) : null
+        proxy ? proxy.getRandom() : null
       );
 
       console.log('Result:', JSON.stringify(Object.assign(Object.assign({}, result), {cardsData: ' [ ...data ]'})));
@@ -30,6 +29,9 @@ class Parser extends Eventor {
         if (!result.totalPages) {
           throw new Error('Something went wrong, page was not found, check formData');
         }
+
+        await this.dispatch('data', result.cardsData);
+
         totalPages = result.totalPages;
         currentRetries = 0;
         currentPage++;
@@ -46,21 +48,21 @@ class Parser extends Eventor {
         console.log('Retry number:', currentRetries);
         const delay = 1e3 * 2 ** currentRetries;
         console.log(`wating ${delay}ms...`);
+        await this.wait(delay);
 
         // new token & cookie
         const oldToken = formData[0][1];
         console.log('Old token:', oldToken);
-        console.log('...requesting new token');
-        const { newToken, newCookie } = await this.requestNewToken(timeout, useProxy ? ProxyList.format((new ProxyList()).getRandom()) : null);
-        cookie = newCookie || '';
+        console.log('requesting new token...');
+        const { newToken, newCookie } = await this.requestNewToken(timeout, proxy ? proxy.getRandom() : null);
+        cookie = newCookie || cookie;
         console.log('New cookie:', newCookie);
         console.log('New token:', newToken);
         formData[0][1] = newToken || oldToken;
         this.dispatch('update', {
-          formData
+          formData,
+          cookie: newCookie
         });
-
-        await this.wait(delay);
         currentRetries++;
       }
     }
@@ -115,7 +117,7 @@ class Parser extends Eventor {
 
     const body = new URLSearchParams();
     for (const [name, value] of formData) {
-      body.append(name, value);
+      body.append(name, name === 'PageNumber' ? page : value);
     }
 
     console.log('Body:', body.toString());
@@ -166,10 +168,7 @@ class Parser extends Eventor {
       const dom = parse(htmlString);
       const cards = dom.querySelectorAll('#SearchResults .card');
       const cardsData = [...cards].map(card => {
-        const titleElement = card.querySelector('div.card-header');
-        const title = titleElement ? titleElement.textContent.trim() : '';
-      
-        const languageElement = card.querySelector('td[data-i18n="resource:SearchFilterLanguageEnglish"]');
+        const languageElement = card.querySelector('td[data-i18n^="resource:SearchFilterLanguage"]');
         const Language = languageElement ? languageElement.textContent : '';
       
         const pubTypeElement = card.querySelector('.table-label:has([data-i18n="resource:MetadataPubType"]) ~ td');
@@ -185,14 +184,17 @@ class Parser extends Eventor {
         const Version = versionElement ? versionElement.textContent : '';
       
         const bookElement = card.querySelector('.col-xs-3:has([data-i18n="resource:GlobalFormatBook"]) ~ .price-block');
-        const Book = bookElement ? bookElement.textContent.trim().match(/\d+/g)[0] || '' : '';
+        const Book = bookElement ? bookElement.textContent.trim() : '';
       
         const cdElement = card.querySelector('.col-xs-3:has([data-i18n="resource:GlobalFormatCD"]) ~ .price-block');
-        const CD = cdElement ? cdElement.textContent.trim().match().match(/\d+/g)[0] || '' : '';
+        const CD = cdElement ? cdElement.textContent.trim() : '';
       
         const downloadElement = card.querySelector('.col-xs-3:has([data-i18n="resource:GlobalFormatDownload"]) ~ .price-block');
-        const Dowload = downloadElement ? downloadElement.textContent.trim().match(/\d+/g)[0] || '' : '';
+        const Download = downloadElement ? downloadElement.textContent.trim() : '';
       
+        const titleElement = card.querySelector('div.card-header');
+        const title = titleElement ? titleElement.textContent : '';
+
         return {
           title,
           Language,
@@ -202,7 +204,7 @@ class Parser extends Eventor {
           Version,
           Book,
           CD,
-          Dowload
+          Download
         };
       });
 

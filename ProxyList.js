@@ -12,10 +12,10 @@ class ProxyList {
 	}
 
 	getRandom() {
-		return this.proxies[Math.floor(this.proxies.length * Math.random())];
+		return this.format(this.proxies[Math.floor(this.proxies.length * Math.random())]);
 	}
 
-	static format(proxyDescriptor) {
+	format(proxyDescriptor) {
 		const [
       login,
       password,
