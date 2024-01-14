@@ -10,10 +10,10 @@ const ProxyList = require('./lib/ProxyList.js');
 
 require('dotenv').config();
 
-const RETRY_COUNT = Number(process.env.RETRY_COUNT || 8);
-const TIMEOUT = Number(process.env.TIMEOUT || 0);
-const USE_PROXY = process.env.USE_PROXY || 0;
-const OUTPUT_PATH = process.env.OUTPUT_PATH || './output';
+const RETRY_COUNT = Number(process.env.RETRY_COUNT ?? 8);
+const TIMEOUT = Number(process.env.TIMEOUT ?? 0);
+const USE_PROXY = Number(process.env.USE_PROXY ?? 0);
+const OUTPUT_PATH = process.env.OUTPUT_PATH ?? './output';
 
 if (!fs.existsSync(OUTPUT_PATH)) {
   fs.mkdirSync(OUTPUT_PATH);
@@ -85,7 +85,7 @@ parser.on('data', async cardsData => {
       subCategory && subCategory[1]
     ].filter(i => i).join('/');
 
-    const resultPDFPath = await writePDF(row["Media Number"], `${row["Media Number"].replace(/\D+$/g, '')}-${row["Version"]}.pdf`, path, TIMEOUT, 3, proxy);
+    const resultPDFPath = await writePDF(row["Media Number"], `${row["Media Number"].replace(/\D+$/g, '')}-${row["Version"]}.pdf`, path, TIMEOUT, 4, proxy);
 
     return [
       formData.filter(([name, _]) => name === "SearchPubType").map(([name, value]) => value).join('/'), //row["Pub Type"],
